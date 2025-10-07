@@ -6,7 +6,7 @@ module "networking" {
   eu_availability_zone = var.eu_availability_zone
   cidr_private_subnet  = var.cidr_private_subnet
 }
-
+/*
 module "security_group" {
   source              = "./security-groups"
   ec2_sg_name         = "SG for EC2 to enable SSH(22), HTTPS(443) and HTTP(80)"
@@ -66,3 +66,5 @@ module "aws_ceritification_manager" {
   domain_name    = "jenkins.jhooq.org"
   hosted_zone_id = module.hosted_zone.hosted_zone_id
 }
+
+*/

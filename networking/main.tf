@@ -91,3 +91,5 @@ resource "aws_route_table_association" "dev_proj_1_private_rt_subnet_association
   subnet_id      = aws_subnet.dev_proj_1_private_subnets[count.index].id
   route_table_id = aws_route_table.dev_proj_1_private_subnets.id
 }
+
+
