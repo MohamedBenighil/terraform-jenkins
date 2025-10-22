@@ -28,3 +28,16 @@ module "virtual_machine" {
   subnet_id                     = each.key == "jump-server" ? tolist(module.networking.free_iliad_public_subnets)[0] : tolist(module.networking.free_iliad_private_subnets)[0]
   user_data_install_jump_server = templatefile("./jump-server-script/installer.sh", { hostname = each.key })
 }
+
+
+
+module "hosted_zone" {
+  source      = "./hosted-zone"
+  vpc_id      = module.networking.free_iliad_vpc_id
+  domain_name = "benighil.free-iliad.com"
+  for_each    = module.virtual_machine
+  vm_name     = "${each.key}.private.free-iliad.com"
+  records     = [each.value.jump_server_ec2_instance_private_ip]
+}
+
+
