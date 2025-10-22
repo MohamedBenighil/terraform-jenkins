@@ -37,3 +37,9 @@ variable "ec2_ami_id" {
   type        = string
   description = "DevOps Project 1 AMI Id for EC2 instance"
 }
+
+variable "vms_names" {
+  type = list(string)
+  # default = ["jump-server", "clickhouse-01", "clickhouse-02", "clickhouse-03", "clickhouse-04", "clickhouse-keeper-01", "clickhouse-keeper-02", "clickhouse-keeper-03"]
+  default = ["jump-server", "clickhouse-01", "clickhouse-02"]
+}

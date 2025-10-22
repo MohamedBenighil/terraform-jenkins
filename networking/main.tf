@@ -16,9 +16,20 @@ output "public_subnet_cidr_block" {
   value = aws_subnet.free_iliad_public_subnets.*.cidr_block
 }
 
+output "free_iliad_private_subnets" {
+  value = aws_subnet.free_iliad_private_subnets.*.id
+}
+
+output "private_subnet_cidr_block" {
+  value = aws_subnet.free_iliad_private_subnets.*.cidr_block
+}
+
+
 # Setup VPC
 resource "aws_vpc" "free_iliad_vpc_eu_central_1" {
-  cidr_block = var.vpc_cidr
+  cidr_block           = var.vpc_cidr
+  enable_dns_support   = true
+  enable_dns_hostnames = true
   tags = {
     Name = var.vpc_name
   }
@@ -112,5 +123,6 @@ resource "aws_route_table_association" "free_iliad_private_rt_subnet_association
   subnet_id      = aws_subnet.free_iliad_private_subnets[count.index].id
   route_table_id = aws_route_table.free_iliad_private_subnets.id
 }
+
 
 
