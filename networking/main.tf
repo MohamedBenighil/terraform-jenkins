@@ -88,29 +88,29 @@ resource "aws_route_table_association" "free_iliad_public_rt_subnet_association"
 }
 
 # Setup Elastic IP
-# resource "aws_eip" "nat_gateway_eip" {
-#   domain = "vpc"
-# }
+resource "aws_eip" "nat_gateway_eip" {
+  domain = "vpc"
+}
 
 
 
 # Setup NAT Gateway
-# resource "aws_nat_gateway" "nat_gateway" {
-#   allocation_id = aws_eip.nat_gateway_eip.id
-#   subnet_id     = aws_subnet.free_iliad_public_subnets[0].id
-#   tags = {
-#     Name = "free-iliad-nat-gw"
-#   }
-# }
+resource "aws_nat_gateway" "nat_gateway" {
+  allocation_id = aws_eip.nat_gateway_eip.id
+  subnet_id     = aws_subnet.free_iliad_public_subnets[0].id
+  tags = {
+    Name = "free-iliad-nat-gw"
+  }
+}
 
 
 # Private Route Table
 resource "aws_route_table" "free_iliad_private_subnets" {
   vpc_id = aws_vpc.free_iliad_vpc_eu_central_1.id
-  # route {
-  #   cidr_block     = "0.0.0.0/0"
-  #   nat_gateway_id = aws_nat_gateway.nat_gateway.id
-  # }
+  route {
+    cidr_block     = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat_gateway.id
+  }
   #depends_on = [aws_nat_gateway.nat_gateway]
   tags = {
     Name = "free-iliad-private-rt"

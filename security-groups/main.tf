@@ -52,7 +52,14 @@ resource "aws_security_group" "ec2_clickhouse_instances" {
     to_port     = 0
     protocol    = "-1"
   }
-
+  #Outgoing request
+  egress {
+    description = "Allow outgoing request"
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   tags = {
     Name = "Security Groups to allow clickhouse (servers & keepers) ports"
   }

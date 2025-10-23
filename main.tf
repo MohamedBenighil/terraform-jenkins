@@ -30,14 +30,14 @@ module "virtual_machine" {
 }
 
 
-
 module "hosted_zone" {
   source      = "./hosted-zone"
   vpc_id      = module.networking.free_iliad_vpc_id
-  domain_name = "benighil.free-iliad.com"
-  for_each    = module.virtual_machine
-  vm_name     = "${each.key}.private.free-iliad.com"
-  records     = [each.value.jump_server_ec2_instance_private_ip]
+  domain_name = "free-iliad.com"
+  records = {
+    for vm_name, vm in module.virtual_machine :
+    vm_name => vm.jump_server_ec2_instance_private_ip
+  }
 }
 
 
