@@ -10,7 +10,7 @@ variable "vpc_cidr" {
 
 variable "vpc_name" {
   type        = string
-  description = "DevOps Project 1 VPC 1"
+  description = "Free Iliad VPC 1"
 }
 
 variable "cidr_public_subnet" {
@@ -30,12 +30,12 @@ variable "eu_availability_zone" {
 
 variable "public_key" {
   type        = string
-  description = "DevOps Project 1 Public key for EC2 instance"
+  description = "Free Iliad Public key for EC2 instances"
 }
 
 variable "ec2_ami_id" {
   type        = string
-  description = "DevOps Project 1 AMI Id for EC2 instance"
+  description = "Free Iliad AMI Id for EC2 instances"
 }
 
 variable "vms_names" {

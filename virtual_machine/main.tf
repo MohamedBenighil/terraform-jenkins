@@ -7,9 +7,7 @@ variable "sg_for_jump_server" {}
 variable "enable_public_ip_address" {}
 variable "user_data_install_jump_server" {}
 
-output "ssh_connection_string_for_ec2" {
-  value = format("%s%s", "ssh -i /Users/rahulwagh/.ssh/aws_ec2_terraform ubuntu@", aws_instance.jump_server_ec2_instance_ip.public_ip)
-}
+
 
 output "jump_server_ec2_instance_id" {
   value = aws_instance.jump_server_ec2_instance_ip.id

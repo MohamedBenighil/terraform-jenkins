@@ -1,4 +1,4 @@
-# bucket_name = "dev-proj-1-jenkins-remote-state-bucket-123456"
+# bucket_name = "free-iliad-remote-state-bucket-123456"
 
 vpc_cidr             = "10.0.0.0/16"
 vpc_name             = "free-iliad-clickhouse-eu-west-vpc-1"
